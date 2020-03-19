@@ -17,7 +17,7 @@ business_id = '4AErMBEoNzbk7Q8g45kKaQ'
 unix_time = 1546047836
 
 # Define my API Key, My Endpoint, and My Header
-yelp_key = os.environ.get([YELP_API_KEY])
+yelp_key = os.environ.get("YELP_API_KEY")
 ENDPOINT = 'https://api.yelp.com/v3/businesses/{}/reviews'.format(business_id)
 HEADERS = {'Authorization': 'bearer %s' % yelp_key}
 
@@ -30,7 +30,7 @@ PARAMETERS = {'term': 'food',
              'location': 'San Diego'}
 
 # BUSINESS MATCH PARAMETERS - EXAMPLE
-#PARAMETERS = {'name': 'Peets Coffee & Tea',
+# PARAMETERS = {'name': 'Peets Coffee & Tea',
 #              'address1': '7845 Highland Village Pl',
 #              'city': 'San Diego',
 #              'state': 'CA',

@@ -26,7 +26,7 @@ def home():
     unix_time = 1546047836
 
     # Define my API Key, My Endpoint, and My Header
-    yelp_key = os.environ.get([YELP_API_KEY])
+    yelp_key = os.environ.get("YELP_API_KEY")
     ENDPOINT = 'https://api.yelp.com/v3/businesses/{}/reviews'.format(business_id)
     HEADERS = {'Authorization': 'bearer %s' % yelp_key}
 
