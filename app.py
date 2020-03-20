@@ -29,16 +29,18 @@ def home():
 
     # Define my API Key, My Endpoint, and My Header
     yelp_key = os.environ.get("YELP_API_KEY")
-    ENDPOINT = 'https://api.yelp.com/v3/businesses/{}/reviews'.format(business_id)
+    ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
+
+    # ENDPOINT = 'https://api.yelp.com/v3/businesses/{}/reviews'.format(business_id)
     HEADERS = {'Authorization': 'bearer %s' % yelp_key}
 
     # Define my parameters of the search
     # BUSINESS SEARCH PARAMETERS - EXAMPLE
-    PARAMETERS = {'term': 'food',
+    PARAMETERS = {'term': 'coffee',
                 'limit': 50,
                 'offset': 50,
                 'radius': 10000,
-                'location': 'San Diego'}
+                'location': 'Saratoga'}
 
     # BUSINESS MATCH PARAMETERS - EXAMPLE
     #PARAMETERS = {'name': 'Peets Coffee & Tea',
@@ -56,5 +58,9 @@ def home():
     business_data = response.json()
 
     # print the response
-    print(json.dumps(business_data, indent = 3))
+    # print(json.dumps(business_data, indent = 3))
+
+    for biz in business_data['businesses']:
+        print(biz)
+
     return 'Hello, home page'
