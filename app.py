@@ -1,5 +1,8 @@
 from flask import Flask
 from dotenv import load_dotenv
+import os
+import requests
+import json
 
 load_dotenv() # looks for dotenv file and driving variable names
 
@@ -18,11 +21,6 @@ def home():
 
     #Businesses, Total, Region
 
-    # Import the modules
-    import os
-    import requests
-    import json
-
     # Define a business ID
     business_id = '4AErMBEoNzbk7Q8g45kKaQ'
     unix_time = 1546047836
@@ -36,11 +34,17 @@ def home():
 
     # Define my parameters of the search
     # BUSINESS SEARCH PARAMETERS - EXAMPLE
-    PARAMETERS = {'term': 'coffee',
+    PARAMETERS = {
+
+                'term': 'coffee',
                 'limit': 50,
                 'offset': 50,
+                # 'longitude': 37.2638,
+                # 'latitude': 122.0230,
                 'radius': 10000,
-                'location': 'Saratoga'}
+                'location': 'Saratoga'
+
+                }
 
     # BUSINESS MATCH PARAMETERS - EXAMPLE
     #PARAMETERS = {'name': 'Peets Coffee & Tea',
@@ -56,11 +60,13 @@ def home():
 
     # Conver the JSON String
     business_data = response.json()
+    for biz in business_data['businesses']:
+        print(biz)
 
     # print the response
     # print(json.dumps(business_data, indent = 3))
 
-    for biz in business_data['businesses']:
-        print(biz)
+    # for biz in business_data["businesses"]:
+    #     print(biz)
 
-    return 'Hello, home page'
+    return 'hello'
