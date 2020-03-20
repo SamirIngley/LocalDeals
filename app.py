@@ -1,5 +1,7 @@
 from flask import Flask
+from dotenv import load_dotenv
 
+load_dotenv() # looks for dotenv file and driving variable names
 
 app = Flask(__name__)
 
