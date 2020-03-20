@@ -1,16 +1,31 @@
+import os
 from flask import Flask
 from dotenv import load_dotenv
-import os
+import googlemaps
+import pprint
+import time
 import requests
 import json
 
 load_dotenv() # looks for dotenv file and driving variable names
 
 app = Flask(__name__)
-
 @app.route('/')
-def home():
+def google():
+    # KEY 
+    google_key = os.environ.get("GOOGLE_API_KEY")
+    
+    # CLIENT
+    gmaps = googlemaps.Client(key = google_key)
 
+    # Define Search
+    places_result = gmaps.places_nearby(location='-33.8670522,151.1957362', radius=10000, open_now=False, type="cafe")
+    pprint.pprint(places_result)
+    return 'hello google'
+
+
+@app.route('/yelp')
+def yelp():
 
     #Business Search      URL -- 'https://api.yelp.com/v3/businesses/search'
     #Business Match       URL -- 'https://api.yelp.com/v3/businesses/matches'
