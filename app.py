@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template, redirect, url_for, request
 from dotenv import load_dotenv
 import googlemaps
 import pprint
@@ -7,94 +7,24 @@ import time
 import requests
 import json
 
+from googleapi import googled
+from yelpapi import yelped
+
 load_dotenv() # looks for dotenv file and driving variable names
 
 app = Flask(__name__)
+
 @app.route('/')
-def google():
-    # KEY 
-    google_key = os.environ.get("GOOGLE_API_KEY")
+def geolocate():
     
-    # CLIENT
-    gmaps = googlemaps.Client(key = google_key)
+    return render_template('geolocation.html')
 
-    # Define Search
-    places_result = gmaps.places_nearby(location='-33.8670522,151.1957362', radius=10000, open_now=False, type="cafe")
-    pprint.pprint(places_result)
 
-    # Get the next 20 results - pause it for 3 seconds. 
-    # time.sleep(3)
-    # places_result2 = gmaps.places_nearby(page_token = places_result['next_page_token'])
-
-    # loop through each place in results, extract website
-    for place in places_result['results']:
-        my_place_id = place['place_id']
-        my_fields = ['name', 'website', 'type']
-
-        place_details = gmaps.place(my_place_id, fields = my_fields)
-        print(place_details)
-
-    return 'hello google'
+@app.route('/google')
+def google_details():
+    return googled()
 
 
 @app.route('/yelp')
 def yelp():
-
-    #Business Search      URL -- 'https://api.yelp.com/v3/businesses/search'
-    #Business Match       URL -- 'https://api.yelp.com/v3/businesses/matches'
-    #Phone Search         URL -- 'https://api.yelp.com/v3/businesses/search/phone'
-
-    #Business Details     URL -- 'https://api.yelp.com/v3/businesses/{id}'
-    #Business Reviews     URL -- 'https://api.yelp.com/v3/businesses/{id}/reviews'
-
-    #Businesses, Total, Region
-
-    # Define a business ID
-    business_id = '4AErMBEoNzbk7Q8g45kKaQ'
-    unix_time = 1546047836
-
-    # Define my API Key, My Endpoint, and My Header
-    yelp_key = os.environ.get("YELP_API_KEY")
-    ENDPOINT = 'https://api.yelp.com/v3/businesses/search'
-
-    # ENDPOINT = 'https://api.yelp.com/v3/businesses/{}/reviews'.format(business_id)
-    HEADERS = {'Authorization': 'bearer %s' % yelp_key}
-
-    # Define my parameters of the search
-    # BUSINESS SEARCH PARAMETERS - EXAMPLE
-    PARAMETERS = {
-
-                'term': 'coffee',
-                'limit': 50,
-                'offset': 50,
-                # 'longitude': 37.2638,
-                # 'latitude': 122.0230,
-                'radius': 10000,
-                'location': 'Saratoga'
-
-                }
-
-    # BUSINESS MATCH PARAMETERS - EXAMPLE
-    #PARAMETERS = {'name': 'Peets Coffee & Tea',
-    #              'address1': '7845 Highland Village Pl',
-    #              'city': 'San Diego',
-    #              'state': 'CA',
-    #              'country': 'US'}
-
-    # Make a request to the Yelp API
-    response = requests.get(url = ENDPOINT,
-                            params = PARAMETERS,
-                            headers = HEADERS)
-
-    # Conver the JSON String
-    business_data = response.json()
-    for biz in business_data['businesses']:
-        print(biz)
-
-    # print the response
-    # print(json.dumps(business_data, indent = 3))
-
-    # for biz in business_data["businesses"]:
-    #     print(biz)
-
-    return 'hello'
+    return yelped()
