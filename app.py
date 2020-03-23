@@ -30,6 +30,8 @@ def google_details():
 
     res = make_response(jsonify({"message": "JSON received"}), 200)
 
+    print(googled(req))
+
     return res
 
 

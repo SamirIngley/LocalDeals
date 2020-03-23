@@ -8,10 +8,11 @@ import pprint
 import time
 import requests
 import json
+from operator import itemgetter
 
 load_dotenv() # looks for dotenv file and driving variable names
 
-def googled():
+def googled(coordinates):
     # KEY 
     google_key = os.environ.get("GOOGLE_API_KEY")
     
@@ -19,10 +20,25 @@ def googled():
     gmaps = googlemaps.Client(key = google_key)
 
     # Define Search
-    places_result = gmaps.places_nearby(location='-33.8670522,151.1957362', radius=10000, open_now=False, type="cafe")
+    print(coordinates.values())
+
+    coo = ''
+    counter = 0
+    for loc in coordinates.values():
+        stringme = str(loc)
+        coo += stringme
+        if counter == 0:
+            coo += ', '
+        counter += 1
+
+    print(coo)
+
+    places_result = gmaps.places_nearby(location=coo, radius=10000, open_now=False, type="gym")
+
+    # '37.2718841, -122.01945309999999'
     # pprint.pprint(places_result)
 
-    # Get the next 20 results - pause it for 3 seconds or else won't work 
+    # Get the next 20 results - pause it for 3 seconds to sync the timing
     # time.sleep(3)
     # places_result2 = gmaps.places_nearby(page_token = places_result['next_page_token'])
 
@@ -49,7 +65,5 @@ def googled():
     for item in website_list:
         print(counter, item)
         counter += 1
-
-
 
     return 'hello'
