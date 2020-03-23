@@ -1,31 +1,71 @@
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<p>Click the button to get your coordinates.</p>
+  <p>Click the button to get your coordinates.</p>
 
-<button onclick="getLocation()">Try It</button>
+  <button onclick="getLocation()">Try It</button>
 
-<p id="demo"></p>
+  <p id="demo"></p>
+  <p id="demo2"></p>
 
 
 
-<script>
-var x = document.getElementById("demo");
+  <script>
+    var x = document.getElementById("demo");
+    var y = document.getElementById("demo2");
+    let pos;
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
-  } else { 
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
+    function showPosition(position) {
+      // async action 
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
 
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude + 
-  "<br>Longitude: " + position.coords.longitude;
-}
-</script>
+      // x.innerHTML = "Latitude: " + lat +
+      //   "<br>Longitude: " + lng;
+
+      pos = [lat, lng];
+      console.log(pos);
+
+      entry = {
+        lat: lat,
+        lng: lng,
+      }
+
+      fetch(`${window.origin}/google`, {
+          method: "POST",
+          credentials: "include", // any cookies on page
+          body: JSON.stringify(entry),
+          cache: "no-cache",
+          headers: new Headers({
+            "content-type": "application/json"
+          })
+        }) //takes url or place to take data from, and init constructor
+        .then(function (response) {
+          if (response.status !== 200) {
+            console.log(`Looks like there was a problem. Status code: ${response.status}`);
+            return;
+          }
+          response.json().then(function (data) {
+            console.log(data);
+          });
+        })
+        .catch(function (error) {
+          console.log("Fetch error: " + error);
+        });
+    }
+
+    function getLocation() {
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+  </script>
 
 </body>
+
 </html>

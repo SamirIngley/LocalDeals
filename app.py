@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, jsonify, make_response
 from dotenv import load_dotenv
 import googlemaps
 import pprint
@@ -20,11 +20,19 @@ def geolocate():
     return render_template('geolocation.html')
 
 
-@app.route('/google')
+# https://pythonise.com/series/learning-flask/flask-and-fetch-api
+@app.route('/google', methods=["POST"])
 def google_details():
-    return googled()
+
+    req = request.get_json()
+
+    print(req)
+
+    res = make_response(jsonify({"message": "JSON received"}), 200)
+
+    return res
 
 
 @app.route('/yelp')
 def yelp():
-    return yelped()
+    return yelped(), googled()
