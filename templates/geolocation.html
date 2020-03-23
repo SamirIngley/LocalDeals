@@ -3,9 +3,9 @@
 
 <body>
 
-  <p>Click the button to get your coordinates.</p>
+  <p>Click the button to get things near your coordinates.</p>
 
-  <button onclick="getLocation()">Try It</button>
+  <button onclick="getLocation()">Search</button>
 
   <p id="demo"></p>
   <p id="demo2"></p>
@@ -31,6 +31,7 @@
       entry = {
         lat, lng
       }
+      // https://healeycodes.com/javascript/python/beginners/webdev/2019/04/11/talking-between-languages.html
 
       fetch(`${window.origin}/google`, {
           method: "POST",

@@ -14,6 +14,7 @@ load_dotenv() # looks for dotenv file and driving variable names
 
 app = Flask(__name__)
 
+# selenium help: https://www.youtube.com/watch?v=GJjMjB3rkJM
 @app.route('/')
 def geolocate():
     
@@ -31,6 +32,7 @@ def google_details():
     res = make_response(jsonify({"message": "JSON received"}), 200)
 
     print(googled(req))
+    print(res)
 
     return res
 
