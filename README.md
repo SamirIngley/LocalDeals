@@ -18,11 +18,11 @@ Flaws:
 
 
 Functionality Progress:
-[x] Get user's coordinates and product, used ajax to send them from JS -> Python
-[x] Validate Google API, Keys hidden
-[x] Pass parameters to Google API, and return business details
-[x] Return list of websites from all locations
-[x] Access websites and search product, used Selenium
-[ ] Parse info on website for product prices, I have the html as a string but Regex not working yet :(
-[ ] Collect prices and sort in ascending order
-[ ] Return list to user
+- [x] Get user's coordinates and product, used ajax to send them from JS -> Python
+- [x] Validate Google API, Keys hidden
+- [x] Pass parameters to Google API, and return business details
+- [x] Return list of websites from all locations
+- [x] Access websites and search product, used Selenium
+- [ ] Parse info on website for product prices, I have the html as a string but Regex not working yet :(
+- [ ] Collect prices and sort in ascending order
+- [ ] Return list to user
