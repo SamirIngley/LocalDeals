@@ -17,5 +17,12 @@ Flaws:
 3. only if my code is able to find and access the search box of the website, granted I'm not denied access for being a bot. 
 
 
-Progress:
-checked # [checkbox:checked]
+Functionality Progress:
+[x] Get user's coordinates and product, used ajax to send them from JS -> Python
+[x] Validate Google API, Keys hidden
+[x] Pass parameters to Google API, and return business details
+[x] Return list of websites from all locations
+[x] Access websites and search product, used Selenium
+[ ] Parse info on website for product prices, I have the html as a string but Regex not working yet :(
+[ ] Collect prices and sort in ascending order
+[ ] Return list to user
