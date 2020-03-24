@@ -1,7 +1,9 @@
 import os
+import re
 import requests
 import fuckit # error steamroller
 from bs4 import BeautifulSoup as bs
+import pandas as pd
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
@@ -15,14 +17,17 @@ def website_list_loop(website_list, product):
         search_site(website, product)
 
 
-def search_site(website="https://www.kohls.com/", product="mens slim jeans"):
+def search_site(website="https://www.kohls.com/", product="apples"):
     ''' opens website with selenium's find elem '''
 
     url = str(website)
     searchfor = str(product)
    
+    # getting the iphone content version (hopefully less content)
+    headers = {'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1'}
+
     options=Options()
-    options.page_load_strategy = 'eager' # waits only til html is loaded and parsed, no stylesheets, images etc
+    options.page_load_strategy = 'normal' # waits only til html is loaded and parsed, no stylesheets, images etc
 
 
     username = os.path.expanduser('~')
@@ -264,7 +269,35 @@ def search_site(website="https://www.kohls.com/", product="mens slim jeans"):
         searchbox.send_keys(Keys.ENTER)
 
         # do i need to reassign the new url? guess not
-        print(browser.current_url)
+        print('current url', browser.current_url)
+
+        tag = browser.find_elements_by_tag_name('p')
+        tag2 = browser.find_elements_by_tag_name('a')
+
+        tag3 = browser.find_elements_by_class_name('prod_price')
+        tag4 = browser.find_elements_by_tag_name('span')
+
+        # for item in tag2:
+            # print(item.text)
+
+        # soup scrape
+        page_response = requests.get(browser.current_url, headers=headers, timeout=5)
+        page_content = bs(page_response.content, "html.parser")
+        # print(page_content)
+        # ul_lists = page_content.find_all(class='span')
+        # print(ul_lists)
+        pattern = re.compile(r'[0-9]+(\.[0-9][0-9]?)?')
+        match = pattern.findall(page_content)
+
+        for m in match:
+            print(m)
+        # If-statement after search() tests if it succeeded
+        if match:
+            print('found', match.group()) ## 'found word:cat'
+        else:
+            print('did not find')
+
+
 
         browser.find_elements_by_name('price')
         browser.find_elements_by_name('product')
@@ -281,11 +314,9 @@ def search_site(website="https://www.kohls.com/", product="mens slim jeans"):
         browser.find_elements_by_id('product-price')
         browser.find_elements_by_id('productprice')
 
-    # if e.text
-    # _contains method 
 
         # driver.quit()
-
+        
 
 
     with fuckit:
