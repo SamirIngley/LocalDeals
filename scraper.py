@@ -27,7 +27,7 @@ def search_site(website="https://www.kohls.com/", product="apples"):
     headers = {'user-agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_3 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) CriOS/56.0.2924.75 Mobile/14E5239e Safari/602.1'}
 
     options=Options()
-    options.page_load_strategy = 'normal' # waits only til html is loaded and parsed, no stylesheets, images etc
+    options.page_load_strategy = 'eager' # waits only til html is loaded and parsed, no stylesheets, images etc
 
 
     username = os.path.expanduser('~')
@@ -268,6 +268,12 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
 
+        options2 = webdriver.ChromeOptions()
+        options2.add_argument('--ignore-certificate-errors')
+        options2.add_argument("--test-type")
+        options2.binary_location = "/usr/bin/chromium"
+        browser.save_screenshot('screenshot.png', chrome_options = options2)
+
         # do i need to reassign the new url? guess not
         print('current url', browser.current_url)
 
@@ -277,25 +283,49 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         tag3 = browser.find_elements_by_class_name('prod_price')
         tag4 = browser.find_elements_by_tag_name('span')
 
-        # for item in tag2:
-            # print(item.text)
+        browser.find_elements_by_class_name('productPrice')
+        browser.find_elements_by_class_name('product-Price')
+        browser.find_elements_by_class_name('productprice')
+        browser.find_elements_by_class_name('Price')
+        price = browser.find_elements_by_class_name('price')
+        price2 = browser.find_elements_by_id('price')
 
-        # soup scrape
+        browser.find_elements_by_class_name('prod_price')
+        browser.find_elements_by_class_name('prod_Price')
+
+        for item in price:
+            print(item.text)
+
+
+
+
+
+        # for item in tag4:
+        #     print(item.text)
+
+        # SOUP scrape
         page_response = requests.get(browser.current_url, headers=headers, timeout=5)
         page_content = bs(page_response.content, "html.parser")
-        # print(page_content)
-        # ul_lists = page_content.find_all(class='span')
+        print(page_content.prettify)
+        ul_lists = page_content.find_all('a')
         # print(ul_lists)
-        pattern = re.compile(r'[0-9]+(\.[0-9][0-9]?)?')
-        match = pattern.findall(page_content)
 
-        for m in match:
-            print(m)
+
+        # REGEX TRIAL 
+        # pattern = re.compile(r'$[0-9][0-9][1-9]\.[0-9][0-9]?')
+        # match = pattern.findall(str(page_content))
+
+        # i=0
+        # for m in match:
+        #     if i < 10:
+        #         print(m)
+        #         i += 1
+        
         # If-statement after search() tests if it succeeded
-        if match:
-            print('found', match.group()) ## 'found word:cat'
-        else:
-            print('did not find')
+        # if match:
+        #     print('found', match.group()) ## 'found word:cat'
+        # else:
+        #     print('did not find')
 
 
 
@@ -314,8 +344,7 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         browser.find_elements_by_id('product-price')
         browser.find_elements_by_id('productprice')
 
-
-        # driver.quit()
+        browser.close()
         
 
 
@@ -553,7 +582,8 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         searchbox.send_keys(Keys.ENTER)
         print(browser.current_url)
 
-
+    browser.close()
+    browser.quit()
 
 
 
