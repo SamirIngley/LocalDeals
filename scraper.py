@@ -4,6 +4,7 @@ import fuckit # error steamroller
 from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
 
 # need to install selenium AND WEBDRIVER (I have chromewebdriver)
 
@@ -14,18 +15,25 @@ def website_list_loop(website_list, product):
         search_site(website, product)
 
 
-def search_site(website="https://www.safeway.com/", product="jeans"):
+def search_site(website="https://www.kohls.com/", product="mens slim jeans"):
     ''' opens website with selenium's find elem '''
 
     url = str(website)
     searchfor = str(product)
    
+    options=Options()
+    options.page_load_strategy = 'eager' # waits only til html is loaded and parsed, no stylesheets, images etc
 
-    user_path = os.path.expanduser('~')
-    # only on mac, if windows -> change the path to C:\\ 
-    browser = webdriver.Chrome(user_path + '/Downloads/chromedriver')
+
+    username = os.path.expanduser('~')
+     # only on mac, if windows -> change the path to C:\\ 
+    download_path = username + '/Downloads/chromedriver'
+    browser = webdriver.Chrome(download_path, options=options)
 
     browser.get(url)
+    # browser.set_page_load_timeout(10)
+
+    product_price = {}
 
     # this is super inefficient and annoying to copypasta if you know of a better way Let me know!
     # If there is a search box on the site - I am assuming it is the first input element or form element.. not perfect but makes sense, right? 
@@ -244,138 +252,209 @@ def search_site(website="https://www.safeway.com/", product="jeans"):
 
 
 
-    # fuckit ignores errors and moves on with the code. 
+    # FUCKIT ignores errors and moves on with the code. 
     # try else would have taken me too long but are effectively the same as fuckit module
 
     with fuckit:
+
+        # TIMING TO AVOID BOT DENIAL ?? time.sleep(2)
         browser.find_element_by_name('search')
         searchbox = browser.find_element_by_name('search')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
 
+        # do i need to reassign the new url? guess not
+        print(browser.current_url)
+
+        browser.find_elements_by_name('price')
+        browser.find_elements_by_name('product')
+        browser.find_elements_by_name('product-price')
+        browser.find_elements_by_name('productprice')
+
+        browser.find_elements_by_class_name('price')
+        browser.find_elements_by_class_name('product')
+        browser.find_elements_by_class_name('product-price')
+        browser.find_elements_by_class_name('productprice')
+        
+        browser.find_elements_by_id('price')
+        browser.find_elements_by_id('product')
+        browser.find_elements_by_id('product-price')
+        browser.find_elements_by_id('productprice')
+
+    # if e.text
+    # _contains method 
+
+        # driver.quit()
+
+
+
     with fuckit:
         searchbox = browser.find_element_by_name('search-input')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     
     with fuckit:
         searchbox = browser.find_element_by_name('searchbox')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     
     with fuckit:
         searchbox = browser.find_element_by_name('search-box')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
 
     with fuckit:
         searchbox = browser.find_element_by_name('searchbox')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
 
     with fuckit:
         searchbox = browser.find_element_by_name('search-bar')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
-    
+        print(browser.current_url)
+   
     with fuckit:
 
         searchbox = browser.find_element_by_name('input')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
 
     with fuckit:
 
         searchbox = browser.find_element_by_name('keyword')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
     
     with fuckit:
 
         searchbox = browser.find_element_by_name('key-word')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_name('key-words')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_name('keywords')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_name('keywordSearch')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER) 
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_name('globalSearchInputField')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_name('globalSearchInput')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_name('globalSearchInput')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_name('globalSearchField')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
 
     with fuckit:
 
         searchbox = browser.find_element_by_id('search')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_id('search-input')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_id('searchbox')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_id('searchbar')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_id('input')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_id('globalSearchInputField')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER) 
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_id('globalSearch')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_id('globalSearchInput')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER) 
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_id('globalSearchField')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
 
 
     with fuckit:
@@ -383,48 +462,66 @@ def search_site(website="https://www.safeway.com/", product="jeans"):
         searchbox = browser.find_element_by_tag('input')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchform = browser.find_element_by_tag_name('form')
         searchbox = searchform.find_element_by_tag_name('input')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
 
     with fuckit:
 
         searchbox = browser.find_element_by_class_name('globalSearchInputField')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_class_name('keyword')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_class_name('keywords')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_class_name('search')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_class_name('searchbox')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_class_name('searchbar')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
     with fuckit:
 
         searchbox = browser.find_element_by_class_name('input')
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
+        print(browser.current_url)
+
 
 
 
