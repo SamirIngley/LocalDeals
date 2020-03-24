@@ -1,7 +1,7 @@
-LocalDeals: Location based advertisements. 
+LocalDeals: The best price at the nearest location! 
 
-Convenient and relevant promotions to shoppers. 
-Provides promotional advertisements from stores within a certain radius, based on a user's filters. 
+Looks up a user inputted product on websites of businesses within a radius of your location.
+Aggregates the prices and displays them in order for you. :) happy shopping
 
-Stores with less than optimal real estate are given an opportunity to display products to customers who may not otherwise choose a store.
-Shoppers are spared sifting through stores individually to shop
+NOTE: some websites recognize a bot is using their site and will deny access.
+I am trying a work around using random mouse clicks and slower speed of typing. 
