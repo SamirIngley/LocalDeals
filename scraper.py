@@ -268,51 +268,47 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
 
-        options2 = webdriver.ChromeOptions()
-        options2.add_argument('--ignore-certificate-errors')
-        options2.add_argument("--test-type")
-        options2.binary_location = "/usr/bin/chromium"
-        browser.save_screenshot('screenshot.png', chrome_options = options2)
+        # options2 = webdriver.ChromeOptions()
+        # options2.add_argument('--ignore-certificate-errors')
+        # options2.add_argument("--test-type")
+        # options2.binary_location = "/usr/bin/chromium"
+        # browser.save_screenshot('screenshot.png', chrome_options = options2)
 
         # do i need to reassign the new url? guess not
         print('current url', browser.current_url)
 
-        tag = browser.find_elements_by_tag_name('p')
-        tag2 = browser.find_elements_by_tag_name('a')
+        # tag = browser.find_elements_by_tag_name('p')
+        # tag2 = browser.find_elements_by_tag_name('a')
 
-        tag3 = browser.find_elements_by_class_name('prod_price')
-        tag4 = browser.find_elements_by_tag_name('span')
+        # tag3 = browser.find_elements_by_class_name('prod_price')
+        # tag4 = browser.find_elements_by_tag_name('span')
 
-        browser.find_elements_by_class_name('productPrice')
-        browser.find_elements_by_class_name('product-Price')
-        browser.find_elements_by_class_name('productprice')
-        browser.find_elements_by_class_name('Price')
-        price = browser.find_elements_by_class_name('price')
-        price2 = browser.find_elements_by_id('price')
+        # browser.find_elements_by_class_name('productPrice')
+        # browser.find_elements_by_class_name('product-Price')
+        # browser.find_elements_by_class_name('productprice')
+        # browser.find_elements_by_class_name('Price')
+        # price = browser.find_elements_by_class_name('price')
+        # price2 = browser.find_elements_by_id('price')
 
-        browser.find_elements_by_class_name('prod_price')
-        browser.find_elements_by_class_name('prod_Price')
+        # browser.find_elements_by_class_name('prod_price')
+        # browser.find_elements_by_class_name('prod_Price')
 
-        for item in price:
-            print(item.text)
-
-
-
-
+        # for item in price:
+        #     print(item.text)
 
         # for item in tag4:
         #     print(item.text)
 
         # SOUP scrape
-        page_response = requests.get(browser.current_url, headers=headers, timeout=5)
+        page_response = requests.get(browser.current_url, headers=headers)
         page_content = bs(page_response.content, "html.parser")
         print(page_content.prettify)
-        ul_lists = page_content.find_all('a')
-        # print(ul_lists)
+        ul_lists = page_content.find_all('div')
+        print(ul_lists)
 
 
         # REGEX TRIAL 
-        # pattern = re.compile(r'$[0-9][0-9][1-9]\.[0-9][0-9]?')
+        # pattern = re.compile(r'[0-9][0-9][1-9]\.[0-9][0-9]?')
         # match = pattern.findall(str(page_content))
 
         # i=0
@@ -321,6 +317,11 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         #         print(m)
         #         i += 1
         
+        # floats = re.findall("\d+\.\d+", str(page_content))
+        # for num in floats:
+        #     print(num)
+        #     print(num.text)
+
         # If-statement after search() tests if it succeeded
         # if match:
         #     print('found', match.group()) ## 'found word:cat'
@@ -329,22 +330,22 @@ def search_site(website="https://www.kohls.com/", product="apples"):
 
 
 
-        browser.find_elements_by_name('price')
-        browser.find_elements_by_name('product')
-        browser.find_elements_by_name('product-price')
-        browser.find_elements_by_name('productprice')
+        # browser.find_elements_by_name('price')
+        # browser.find_elements_by_name('product')
+        # browser.find_elements_by_name('product-price')
+        # browser.find_elements_by_name('productprice')
 
-        browser.find_elements_by_class_name('price')
-        browser.find_elements_by_class_name('product')
-        browser.find_elements_by_class_name('product-price')
-        browser.find_elements_by_class_name('productprice')
+        # browser.find_elements_by_class_name('price')
+        # browser.find_elements_by_class_name('product')
+        # browser.find_elements_by_class_name('product-price')
+        # browser.find_elements_by_class_name('productprice')
         
-        browser.find_elements_by_id('price')
-        browser.find_elements_by_id('product')
-        browser.find_elements_by_id('product-price')
-        browser.find_elements_by_id('productprice')
+        # browser.find_elements_by_id('price')
+        # browser.find_elements_by_id('product')
+        # browser.find_elements_by_id('product-price')
+        # browser.find_elements_by_id('productprice')
 
-        browser.close()
+        browser.quit()
         
 
 
@@ -582,7 +583,6 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         searchbox.send_keys(Keys.ENTER)
         print(browser.current_url)
 
-    browser.close()
     browser.quit()
 
 
