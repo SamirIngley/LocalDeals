@@ -304,7 +304,7 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         page_content = bs(page_response.content, "html.parser")
         print(page_content.prettify)
         ul_lists = page_content.find_all('div')
-        print(ul_lists)
+        # print(ul_lists)
 
 
         # REGEX TRIAL 

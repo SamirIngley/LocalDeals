@@ -3,12 +3,17 @@
 
 <body>
 
-  <p>Click the button to get things near your coordinates.</p>
-
+  <h1>Get product prices near your location.</h1>
+  <input type="text" name="product" placeholder="Product"></input>
+  <input type="text" name="category" placeholder="Category"></input>
+  <p>Radius:</p>
+  <input type="range" min="1" max="50000" value="10000" name="radius" placeholder="radius"></input>
+  <br>
+  <br>
   <button onclick="getLocation()">Search</button>
 
-  <p id="demo"></p>
-  <p id="demo2"></p>
+  <p id="place"></p>
+  <p id="place2"></p>
 
 
 

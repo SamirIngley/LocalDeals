@@ -39,4 +39,4 @@ def google_details():
 
 @app.route('/yelp')
 def yelp():
-    return yelped(), googled()
+    return yelped()
