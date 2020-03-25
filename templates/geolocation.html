@@ -1,25 +1,85 @@
 <!DOCTYPE html>
 <html>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>LocalDeals</title>
+  <link href="static/style.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+</head>
+
 <body>
 
-  <h1>Get product prices near your location.</h1>
-  <input type="text" name="product" placeholder="Product"></input>
-  <input type="text" name="category" placeholder="Category"></input>
-  <p>Radius:</p>
-  <input type="range" min="1" max="50000" value="10000" name="radius" placeholder="radius"></input>
-  <br>
-  <br>
-  <button onclick="getLocation()">Search</button>
+  <h1>Get the prices of products near you.</h1>
+
+  <form action="/" method="POST">
+    <div class="productcat">
+      Product Name: <input type="text" name="prod" placeholder="Product"></input>
+    
+      <label for="cat">Choose a category:</label>
+
+      <select name="cat" id="cat">
+          <option value="">--Select an option--</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="hamster">Hamster</option>
+          <option value="parrot">Parrot</option>
+          <option value="spider">Spider</option>
+          <option value="goldfish">Goldfish</option>
+      </select>
+    </div>
+
+    <br>
+    <p>Radius:</p>
+    <div class="slidecontainer">
+      <input type="range" name="rad" min="1" max="100" value="50" class="slider" id="myRange">
+    </div>
+
+    <br>
+    <div class="open">
+      <input type="checkbox" name="open" id="opennow" name="opennow" value="opennow">
+      <label for="opennow"> Include stores not currently open</label><br>
+    </div>
+    <br>
+    <div>
+      <p>* This may take a few minutes.</p>
+      <button onclick="getLocation()" type="submit">Search</button>
+    </div>
+  </form>
+
 
   <p id="place"></p>
   <p id="place2"></p>
 
-
+  <div class="block">
+    {% block content %}
+    {% endblock %}
+  </div>
 
   <script>
-    var x = document.getElementById("demo");
-    var y = document.getElementById("demo2");
+    var x = document.getElementById("place");
+    var y = document.getElementById("place2");
     let pos;
 
     function showPosition(position) {
@@ -34,7 +94,8 @@
       console.log(pos);
 
       entry = {
-        lat, lng
+        lat,
+        lng
       }
       // https://healeycodes.com/javascript/python/beginners/webdev/2019/04/11/talking-between-languages.html
 
@@ -70,6 +131,32 @@
       }
     }
   </script>
+
+  <script>
+    // define a lookup for what text should be displayed for each value in your range
+    var rangeValues = {
+      "1": "10000",
+      "2": "20000",
+      "3": "30000",
+      "4": "40000",
+      "5": "50000",
+    };
+
+
+    $(function () {
+
+      // on page load, set the text of the label based the value of the range
+      $('#rangeText').text(rangeValues[$('#rangeInput').val()]);
+
+      // setup an event handler to set the text when the range value is dragged (see event for input) or changed (see event for change)
+      $('#rangeInput').on('input change', function () {
+        $('#rangeText').text(rangeValues[$(this).val()]);
+      });
+
+    });
+  </script>
+
+
 
 </body>
 

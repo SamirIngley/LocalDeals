@@ -14,10 +14,11 @@ from selenium.webdriver.chrome.options import Options
 def website_list_loop(website_list, product):
 
     for website in website_list:
+        print('get searched, son', website)
         search_site(website, product)
+    return 'loopty'
 
-
-def search_site(website="https://www.kohls.com/", product="apples"):
+def search_site(website, product="mens slim jeans"):
     ''' opens website with selenium's find elem '''
 
     url = str(website)
@@ -354,6 +355,7 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         searchbox.send_keys(searchfor)
         searchbox.send_keys(Keys.ENTER)
         print(browser.current_url)
+        
 
     
     with fuckit:
@@ -584,6 +586,7 @@ def search_site(website="https://www.kohls.com/", product="apples"):
         print(browser.current_url)
 
     browser.quit()
+    return 'website'
 
 
 
@@ -594,4 +597,3 @@ def search_site(website="https://www.kohls.com/", product="apples"):
     #     print('Could not locate website search')
     #     return None
 
-search_site()
