@@ -12,7 +12,7 @@ from operator import itemgetter
 
 load_dotenv() # looks for dotenv file and driving variable names
 
-def googled(coordinates, cat="gym", rad="500000", open=False):
+def googled(coordinates, cat="bar", rad="50000", open=False):
     ''' returns a list of the websites of relevant businesses in the vicinty '''
 
     # KEY 
