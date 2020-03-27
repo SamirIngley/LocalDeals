@@ -8,16 +8,70 @@
 	<form action="POST" onsubmit="getLocation()">
 		<label for="prod">Product:</label>
 		<input type="text" id="prod">
+
 		<label for="cat">Category:</label>
-		<input type="text" id="cat">
+		<select name="cat" id="cat">
+			<option value="">--Select an option--</option>
+			<option value="art_gallery">art_gallery</option>
+			<option value="bakery">bakery</option>
+			<option value="bar">bar</option>
+			<option value="beauty_salon">beauty_salon</option>
+			<option value="bicycle_store">bicycle_store</option>
+			<option value="book_store">book_store</option>
+			<option value="bowling_alley">bowling_alley</option>
+			<option value="cafe">cafe</option>
+			<option value="car_rental">car_rental</option>
+			<option value="car_repair">car_repair</option>
+			<option value="car_wash">car_wash</option>
+			<option value="clothing_store">clothing_store</option>
+			<option value="convenience_store">convenience_store</option>
+			<option value="department_store">department_store</option>
+			<option value="drugstore">drugstore</option>
+			<option value="electronics_store">electronics_store</option>
+			<option value="florist">florist</option>
+			<option value="furniture_store">furniture_store</option>
+			<option value="gas_station">gas_station</option>
+			<option value="grocery_or_supermarket">grocery_or_supermarket</option>
+			<option value="gym">gym</option>
+			<option value="hair_care">hair_care</option>
+			<option value="hardware_store">hardware_store</option>
+			<option value="home_goods_store">home_goods_store</option>
+			<option value="jewelry_store">jewelry_store</option>
+			<option value="laundry">laundry</option>
+			<option value="liquor_store">liquor_store</option>
+			<option value="locksmith">locksmith</option>
+			<option value="lodging">lodging</option>
+			<option value="meal_delivery">meal_delivery</option>
+			<option value="meal_takeaway">meal_takeaway</option>
+			<option value="movie_theater">movie_theater</option>
+			<option value="night_club">night_club</option>
+			<option value="pet_store">pet_store</option>
+			<option value="pharmacy">pharmacy</option>
+			<option value="restaurant">restaurant</option>
+			<option value="rv_park">rv_park</option>
+			<option value="shoe_store">shoe_store</option>
+			<option value="shopping_mall">shopping_mall</option>
+			<option value="spa">spa</option>
+			<option value="store">store</option>
+			<option value="supermarket">supermarket</option>
+			<option value="veterinary_care">veterinary_care</option>
+			<option value="zoo">zoo</option>
+
+		</select>		
+
 		<label for="rad">Radius:</label>
-		<input type="text" id="rad">
-		<label for="opennow">Open Now:</label>
-		<input type="text" id="opennow">
+		<div class="slidecontainer">
+			<input type="range" name="rad" min="1" max="100" value="50" class="slider" id="rad">
+		</div>
+
+		<label for="opennow">Include places that are closed:</label>
+		<input type="checkbox" name="open" id="opennow" name="opennow" checked>
+		
 		<button type="submit" value="Submit" id="button">Submit</button>
 
 	</form>
-	<button onclick="getLocation()" id="button">Normal Try It</button>
+	
+	<!-- <button onclick="getLocation()" id="button">Normal Try It</button> -->
 
 	<p id="demo"></p>
 	<p id="demo2"></p>
