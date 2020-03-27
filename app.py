@@ -18,32 +18,27 @@ app = Flask(__name__)
 def geolocate():
 
     if request.method == "POST":
-        coords = request.get_json()
-        print('home coords: ', coords)
 
+        req = request.get_json()
+        print(req)
         res = make_response(jsonify({"message": "JSON received"}), 200)
-
-        params = {
-            'product' : request.form.get('prod'),
-            'category' : request.form.get('cat'),
-            'radius' : request.form.get('rad'),
-            'opennow' : request.form.get('open'),
-        }
-        
-        print(params.items())
-        
         return 'hi'
-
 
     
     return render_template('geolocation.html')
 
 
 # https://pythonise.com/series/learning-flask/flask-and-fetch-api
-@app.route('/google', methods=["GET", "POST"])
+@app.route('/google', methods=["POST"])
 def google_details():
 
-    return res
+    req = request.get_json()
+
+    print(req)
+
+    res = make_response(jsonify({"message": "JSON received"}), 200)
+
+    return 'hi'
 
 
 @app.route('/yelp')
