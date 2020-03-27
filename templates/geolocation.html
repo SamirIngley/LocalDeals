@@ -1,108 +1,109 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <title>LocalDeals</title>
-  <link href="static/style.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>LocalDeals</title>
+    <link href="static/style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  
+  </head>
 
 <body>
 
-  <h1>Get the prices of products near you.</h1>
 
-  <form action="/" method="POST">
-    <div class="productcat">
-      Product Name: <input type="text" name="prod" placeholder="Product"></input>
-    
-      <label for="cat">Choose a category:</label>
+  <h1>Get the best prices near you!</h1>
 
-      <select name="cat" id="cat">
-          <option value="">--Select an option--</option>
-          <option value="art_gallery">art_gallery</option>
-          <option value="bakery">bakery</option>
-          <option value="bar">bar</option>
-          <option value="beauty_salon">beauty_salon</option>
-          <option value="bicycle_store">bicycle_store</option>
-          <option value="book_store">book_store</option>
-          <option value="bowling_alley">bowling_alley</option>
-          <option value="cafe">cafe</option>
-          <option value="car_rental">car_rental</option>
-          <option value="car_repair">car_repair</option>
-          <option value="car_wash">car_wash</option>
-          <option value="clothing_store">clothing_store</option>
-          <option value="convenience_store">convenience_store</option>
-          <option value="department_store">department_store</option>
-          <option value="drugstore">drugstore</option>
-          <option value="electronics_store">electronics_store</option>
-          <option value="florist">florist</option>
-          <option value="furniture_store">furniture_store</option>
-          <option value="gas_station">gas_station</option>
-          <option value="grocery_or_supermarket">grocery_or_supermarket</option>
-          <option value="gym">gym</option>
-          <option value="hair_care">hair_care</option>
-          <option value="hardware_store">hardware_store</option>
+	<form action="/" method="POST">
+		<div class="productcat">
+			Product Name: <input type="text" name="prod" placeholder="Product"></input>
 
+			<label for="cat">Choose a category:</label>
 
-          <option value="home_goods_store">home_goods_store</option>
-          <option value="jewelry_store">jewelry_store</option>
-          <option value="laundry">laundry</option>
-          <option value="liquor_store">liquor_store</option>
-          <option value="locksmith">locksmith</option>
-          <option value="lodging">lodging</option>
-          <option value="meal_delivery">meal_delivery</option>
-          <option value="meal_takeaway">meal_takeaway</option>
-          <option value="movie_theater">movie_theater</option>
-          <option value="night_club">night_club</option>
-          <option value="pet_store">pet_store</option>
-          <option value="pharmacy">pharmacy</option>
-          <option value="restaurant">restaurant</option>
-          <option value="rv_park">rv_park</option>
-          <option value="shoe_store">shoe_store</option>
-          <option value="shopping_mall">shopping_mall</option>
-          <option value="spa">spa</option>
-          <option value="store">store</option>
-          <option value="supermarket">supermarket</option>
-          <option value="veterinary_care">veterinary_care</option>
-          <option value="zoo">zoo</option>
-  
-      </select>
-    </div>
+			<select name="cat" id="cat">
+				<option value="">--Select an option--</option>
+				<option value="art_gallery">art_gallery</option>
+				<option value="bakery">bakery</option>
+				<option value="bar">bar</option>
+				<option value="beauty_salon">beauty_salon</option>
+				<option value="bicycle_store">bicycle_store</option>
+				<option value="book_store">book_store</option>
+				<option value="bowling_alley">bowling_alley</option>
+				<option value="cafe">cafe</option>
+				<option value="car_rental">car_rental</option>
+				<option value="car_repair">car_repair</option>
+				<option value="car_wash">car_wash</option>
+				<option value="clothing_store">clothing_store</option>
+				<option value="convenience_store">convenience_store</option>
+				<option value="department_store">department_store</option>
+				<option value="drugstore">drugstore</option>
+				<option value="electronics_store">electronics_store</option>
+				<option value="florist">florist</option>
+				<option value="furniture_store">furniture_store</option>
+				<option value="gas_station">gas_station</option>
+				<option value="grocery_or_supermarket">grocery_or_supermarket</option>
+				<option value="gym">gym</option>
+				<option value="hair_care">hair_care</option>
+				<option value="hardware_store">hardware_store</option>
+				<option value="home_goods_store">home_goods_store</option>
+				<option value="jewelry_store">jewelry_store</option>
+				<option value="laundry">laundry</option>
+				<option value="liquor_store">liquor_store</option>
+				<option value="locksmith">locksmith</option>
+				<option value="lodging">lodging</option>
+				<option value="meal_delivery">meal_delivery</option>
+				<option value="meal_takeaway">meal_takeaway</option>
+				<option value="movie_theater">movie_theater</option>
+				<option value="night_club">night_club</option>
+				<option value="pet_store">pet_store</option>
+				<option value="pharmacy">pharmacy</option>
+				<option value="restaurant">restaurant</option>
+				<option value="rv_park">rv_park</option>
+				<option value="shoe_store">shoe_store</option>
+				<option value="shopping_mall">shopping_mall</option>
+				<option value="spa">spa</option>
+				<option value="store">store</option>
+				<option value="supermarket">supermarket</option>
+				<option value="veterinary_care">veterinary_care</option>
+				<option value="zoo">zoo</option>
 
-    <br>
-    <p>Radius:</p>
-    <div class="slidecontainer">
-      <input type="range" name="rad" min="1" max="100" value="50" class="slider" id="myRange">
-    </div>
+			</select>
+		</div>
 
-    <br>
-    <div class="open">
-      <input type="checkbox" name="open" id="opennow" name="opennow" value="opennow">
-      <label for="opennow"> Include stores not currently open</label><br>
-    </div>
-    <br>
-    <div>
+		<br>
+		<p>Radius:</p>
+		<div class="slidecontainer">
+			<input type="range" name="rad" min="1" max="100" value="50" class="slider" id="myRange">
+		</div>
+
+		<br>
+		<div class="open">
+			<input type="checkbox" name="open" id="opennow" name="opennow" value="opennow">
+			<label for="opennow"> Include stores not currently open</label><br>
+		</div>
+		<br>
+		<div>
+
       <p>* This may take a few minutes.</p>
-      <button onclick="getLocation()" type="submit">Search</button>
-    </div>
-  </form>
+    <button onclick="getLocation()" type="Submit">Search</button>
+
+			
+		</div>
+	</form>
+
+
+  <p>* This may take a few minutes.</p>
+  <button onclick="getLocation()">Search</button>
 
 
   <p id="place"></p>
   <p id="place2"></p>
 
-  <div class="block">
-    {% block content %}
-    {% endblock %}
-  </div>
 
   <script>
-    var x = document.getElementById("place");
-    var y = document.getElementById("place2");
+    // var x = document.getElementById("place");
+    // var y = document.getElementById("place2");
     let pos;
 
     function showPosition(position) {
@@ -117,12 +118,11 @@
       console.log(pos);
 
       entry = {
-        lat,
-        lng
+        lat: lat,
+        lng: lng,
       }
-      // https://healeycodes.com/javascript/python/beginners/webdev/2019/04/11/talking-between-languages.html
 
-      fetch(`${window.origin}/google`, {
+      fetch(`${window.origin}/`, {
           method: "POST",
           credentials: "include", // any cookies on page
           body: JSON.stringify(entry),
@@ -154,32 +154,6 @@
       }
     }
   </script>
-
-  <script>
-    // define a lookup for what text should be displayed for each value in your range
-    var rangeValues = {
-      "1": "10000",
-      "2": "20000",
-      "3": "30000",
-      "4": "40000",
-      "5": "50000",
-    };
-
-
-    $(function () {
-
-      // on page load, set the text of the label based the value of the range
-      $('#rangeText').text(rangeValues[$('#rangeInput').val()]);
-
-      // setup an event handler to set the text when the range value is dragged (see event for input) or changed (see event for change)
-      $('#rangeInput').on('input change', function () {
-        $('#rangeText').text(rangeValues[$(this).val()]);
-      });
-
-    });
-  </script>
-
-
 
 </body>
 

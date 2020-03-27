@@ -1,0 +1,62 @@
+
+
+<button type="submit">Allow Location</button>
+
+<body>
+    
+  <script>
+    var x = document.getElementById("place");
+    var y = document.getElementById("place2");
+    let pos;
+
+    function showPosition(position) {
+      // async action 
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+
+      // x.innerHTML = "Latitude: " + lat +
+      //   "<br>Longitude: " + lng;
+
+      pos = [lat, lng];
+      console.log(pos);
+
+      entry = {
+        lat,
+        lng
+      }
+      // https://healeycodes.com/javascript/python/beginners/webdev/2019/04/11/talking-between-languages.html
+
+      fetch(`${window.origin}/google`, {
+          method: "POST",
+          credentials: "include", // any cookies on page
+          body: JSON.stringify(entry),
+          cache: "no-cache",
+          headers: new Headers({
+            "content-type": "application/json"
+          })
+        }) //takes url or place to take data from, and init constructor
+        .then(function (response) {
+          if (response.status !== 200) {
+            console.log(`Looks like there was a problem. Status code: ${response.status}`);
+            return;
+          }
+          response.json().then(function (data) {
+            console.log(data);
+          });
+        })
+        .catch(function (error) {
+          console.log("Fetch error: " + error);
+        });
+    }
+
+    function getLocation() {
+
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
+  </script>
+
+</body>
