@@ -12,7 +12,8 @@ from operator import itemgetter
 
 load_dotenv() # looks for dotenv file and driving variable names
 
-def googled(coordinates, cat="bar", rad="50000", open=False):
+
+def googled(req, lat, lng, prod, cat, rad, now):
     ''' returns a list of the websites of relevant businesses in the vicinty '''
 
     # KEY 
@@ -24,18 +25,30 @@ def googled(coordinates, cat="bar", rad="50000", open=False):
     # Define Search
     # print(coordinates.values())
 
-    coo = ''
-    counter = 0
-    for loc in coordinates.values():
-        stringme = str(loc)
-        coo += stringme
-        if counter == 0:
-            coo += ', '
-        counter += 1
+    # coo = ''
+    # counter = 0
+    # for loc in coordinates.values():
+    #     stringme = str(loc)
+    #     coo += stringme
+    #     if counter == 0:
+    #         coo += ', '
+    #     counter += 1
 
     # print(coo)
+    coords = ''
+    coords += str(lat)
+    coords += ', '
+    coords += str(lng)
+    print(coords)
 
-    places_result = gmaps.places_nearby(location=coo, radius=rad, open_now=open, type=cat)
+    rad = rad + '000'
+
+    if now == 'on':
+        now = True
+    else:
+        now = False
+    print(coords, cat, rad, now)
+    places_result = gmaps.places_nearby(location=coords, type=cat, radius=rad, open_now=now)
 
     # pprint.pprint(places_result)
 
@@ -72,4 +85,4 @@ def googled(coordinates, cat="bar", rad="50000", open=False):
 if __name__ == "__main__":
         
     coords = {"lat": '37.2718841', "long": "-122.01945309999999"}
-    googled(coords)
+    googled(coords, '37.2718841, -122.01945309999999', )

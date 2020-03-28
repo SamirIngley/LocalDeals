@@ -6,7 +6,7 @@ import pprint
 import time
 import requests
 import json
-
+ 
 from googleapi import googled
 from yelpapi import yelped
 
@@ -20,23 +20,33 @@ def geolocate():
     if request.method == "POST":
 
         req = request.get_json()
-        print(req)
-        res = make_response(jsonify({"message": "JSON received"}), 200)
-        return 'hi'
+        # print(type(req))
+        lat = req['lat']
+        lng = req['lng']
+        prod = req['prod']
+        cat = req['cat']
+        rad = req['rad']
+        now = req['now']
+        # print(prod)
+        # res = make_response(jsonify({"message": "JSON received"}), 200)
+        # res = make_response(jsonify(req), 200)
+
+        return redirect(url_for('google_details', req=req, lat=lat, lng=lng, prod=prod, cat=cat, rad=rad, now=now))
 
     
     return render_template('geolocation.html')
 
 
 # https://pythonise.com/series/learning-flask/flask-and-fetch-api
-@app.route('/google', methods=["POST"])
-def google_details():
+@app.route('/google/<req>/<lat>/<lng>/<prod>/<cat>/<rad>/<now>', methods=["POST", "GET"])
+def google_details(req, lat, lng, prod, cat, rad, now):
 
-    req = request.get_json()
-
-    print(req)
-
-    res = make_response(jsonify({"message": "JSON received"}), 200)
+    # print('getme', type(req))
+    # print(req)
+    # print(lat, lng, type(lat))
+    print(prod, cat, rad, now, type(prod))
+    # print('LAT LNG ', req[lat], req[lng])
+    googled(req, lat, lng, prod, cat, rad, now)
 
     return 'hi'
 
