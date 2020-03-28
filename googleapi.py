@@ -47,8 +47,9 @@ def googled(req, lat, lng, prod, cat, rad, now):
         now = True
     else:
         now = False
-    print(coords, cat, rad, now)
-    places_result = gmaps.places_nearby(location=coords, type=cat, radius=rad, open_now=now)
+
+    print(coords, prod, cat, rad, now)
+    places_result = gmaps.places_nearby(location=coords, keyword=prod, type=cat, radius=rad, open_now=now)
 
     # pprint.pprint(places_result)
 
@@ -62,6 +63,7 @@ def googled(req, lat, lng, prod, cat, rad, now):
     website_list = []
 
     for place in places_result['results']:
+        # print(places_result['results'])
         my_place_id = place['place_id']
         my_fields = ['name', 'website', 'type']
 
