@@ -1,5 +1,7 @@
 LocalDeals: The best price at the nearest location! 
 
+Note: progress is on halt due to the fact that every website has a whole new set of html to parse and creating explicit code for each possibility is inefficient. Creating a ML algorithm to learn where the search box is on any given website would be ideal... so the project is on hold for now. 
+
 Looks up a user inputted product on the websites of businesses within a specified radius around your coordinates.
 Aggregates the prices and displays them in order for you. 
 :) happy shopping
